@@ -15,7 +15,7 @@ const handle = app.getRequestHandler();
 const graphQLServer = new ApolloServer({
   typeDefs: schema,
   resolvers: {
-    Query: { ping: (_: any, args: any) => args.text },
+    Query: { ping: (_: any, args: any) => `${args.text} from GraphQL` },
     // Mutation: { /* ... TODO: Add mutation resolvers here ... */ }
   },
   playground: {
@@ -32,13 +32,17 @@ app.prepare().then(() => {
     return app.render(req, res, '/example', req.query)
   })
 
+  server.get('/example/:text', (req, res) => {
+    return app.render(req, res, '/example', { text: req.params.text })
+  })
+
   server.get('/', (req, res) => {
     return handle(req, res);
   })
 
-  server.use('*', async (req, res) => {
+  server.use('*', (req, res) => {
     if (!req.path.match(/graphql/)) {
-      await app.render404(req, res);
+      return app.render404(req, res);
     }
   })
 
