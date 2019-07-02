@@ -1,0 +1,31 @@
+{
+  "name": "nextjs-apollo-boilerplate",
+  "version": "1.0.0",
+  "main": "src/server.ts",
+  "license": "MIT",
+  "scripts": {
+    "build": "next build",
+    "start": "NODE_ENV=production ts-node src/server.js",
+    "dev": "nodemon -e ts -w ./ -x npm run watch:dev",
+    "watch:dev": "ts-node ./src/server.ts"
+  },
+  "dependencies": {
+    "apollo-boost": "^0.4.3",
+    "apollo-server": "^2.7.0-alpha.3",
+    "graphql": "^14.4.1",
+    "isomorphic-unfetch": "^3.0.0",
+    "next": "^8.1.0",
+    "react": "^16.8.6",
+    "react-apollo": "^2.5.8",
+    "react-dom": "^16.8.6",
+    "reflect-metadata": "^0.1.13"
+  },
+  "devDependencies": {
+    "@types/next": "^8.0.5",
+    "@types/react": "^16.8.22",
+    "@zeit/next-typescript": "^1.1.1",
+    "nodemon": "^1.19.1",
+    "ts-node": "^8.3.0",
+    "typescript": "^3.5.2"
+  }
+}
